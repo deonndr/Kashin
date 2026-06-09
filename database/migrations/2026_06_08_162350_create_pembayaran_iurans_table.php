@@ -11,8 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('pembayaran_iurans', function (Blueprint $table) {
+        Schema::create('pembayaran_iuran', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('siswa_id')->constrained('siswa')->onDelete('cascade');
+            $table->foreignId('periode_iuran_id')->constrained('periode_iuran')->onDelete('cascade');
+            $table->integer('jumlah_bayar');
+            $table->date('tanggal_bayar');
+            $table->enum('status_bayar', ['Lunas', 'Belum Lunas']);
             $table->timestamps();
         });
     }
@@ -22,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('pembayaran_iurans');
+        Schema::dropIfExists('pembayaran_iuran');
     }
 };
