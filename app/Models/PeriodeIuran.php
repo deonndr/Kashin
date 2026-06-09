@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\PembayaranIuran;
 use Illuminate\Database\Eloquent\Model;
 
 class PeriodeIuran extends Model

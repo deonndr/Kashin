@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Models\Siswa;
+use App\Models\PeriodeIuran;
 use Illuminate\Database\Eloquent\Model;
 
 class PembayaranIuran extends Model

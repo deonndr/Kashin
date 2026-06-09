@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Kegiatan;
 use Illuminate\Database\Eloquent\Model;
 
 class Pengeluaran extends Model
