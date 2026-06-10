@@ -12,7 +12,16 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
-        //
+        $middleware->alias([
+            'role' => \App\Http\Middleware\RoleMiddleware::class,
+        ]);
+
+        $middleware->redirectUsersTo(function ($request) {
+            if ($request->user() && $request->user()->role === 'siswa') {
+                return route('dashboard.siswa');
+            }
+            return route('dashboard');
+        });
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         $exceptions->shouldRenderJsonWhen(
