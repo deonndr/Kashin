@@ -1,3 +1,2 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* Kashin — Bootstrap 5.3 via CDN, no Tailwind needed */
+/* All styles are handled by Bootstrap CDN in layouts/app.blade.php & layouts/guest.blade.php */
