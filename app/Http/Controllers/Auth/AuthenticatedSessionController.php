@@ -28,6 +28,10 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
+        if ($request->user() && $request->user()->role === 'siswa') {
+            return redirect()->intended(route('dashboard.siswa', absolute: false));
+        }
+
         return redirect()->intended(route('dashboard', absolute: false));
     }
 

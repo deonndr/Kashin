@@ -1,0 +1,723 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+  --kd-bg-base: #16130F;        /* page background */
+  --kd-bg-surface: #1E1A15;     /* cards, sidebar */
+  --kd-bg-elevated: #252018;    /* hover rows, inputs */
+  --kd-border: #2E2820;         /* all borders */
+  --kd-border-strong: #3D3528;  /* focused/active borders */
+
+  --kd-text-primary: #F0EBE3;   /* headings, values */
+  --kd-text-secondary: #9E9488; /* labels, subtitles */
+  --kd-text-muted: #5C564E;     /* placeholders, disabled */
+
+  --kd-accent: #7DA87B;         /* brand green — income, lunas, progress */
+  --kd-accent-dim: #3D5C3C;     /* accent backgrounds */
+  --kd-danger: #C0604A;         /* expenses, hapus, keluar */
+  --kd-danger-dim: #4A2018;     /* danger backgrounds */
+  --kd-warning: #C49A3C;        /* menunggak */
+  --kd-warning-dim: #4A3A10;    /* warning backgrounds */
+
+  /* ═══════════════════════════════════
+     TYPOGRAPHY SCALE (Source: Google Material Design 3 Type System & fluid clamp scale)
+     Ensures premium readability and visual hierarchy across mobile, tablet, and desktop.
+     ═══════════════════════════════════ */
+  --kd-fs-display-large: clamp(2.5rem, 5vw, 3.56rem);    /* ~40px to 57px */
+  --kd-fs-display-medium: clamp(2.25rem, 4vw, 2.81rem);  /* ~36px to 45px */
+  --kd-fs-display-small: clamp(2rem, 3vw, 2.25rem);      /* ~32px to 36px */
+
+  --kd-fs-headline-large: clamp(1.75rem, 2.5vw, 2rem);   /* ~28px to 32px */
+  --kd-fs-headline-medium: clamp(1.5rem, 2vw, 1.75rem);  /* ~24px to 28px */
+  --kd-fs-headline-small: clamp(1.25rem, 1.8vw, 1.5rem); /* ~20px to 24px */
+
+  --kd-fs-title-large: clamp(1.125rem, 1.5vw, 1.375rem); /* ~18px to 22px */
+  --kd-fs-title-medium: clamp(0.95rem, 1.2vw, 1rem);     /* ~15px to 16px */
+  --kd-fs-title-small: clamp(0.85rem, 1vw, 0.875rem);    /* ~13.5px to 14px */
+
+  --kd-fs-body-large: clamp(0.95rem, 1.2vw, 1rem);       /* ~15px to 16px */
+  --kd-fs-body-medium: clamp(0.85rem, 1vw, 0.875rem);    /* ~13.5px to 14px */
+  --kd-fs-body-small: clamp(0.75rem, 0.9vw, 0.775rem);   /* ~12px */
+
+  --kd-fs-label-large: clamp(0.85rem, 1vw, 0.875rem);
+  --kd-fs-label-medium: clamp(0.75rem, 0.9vw, 0.775rem);
+  --kd-fs-label-small: clamp(0.68rem, 0.8vw, 0.7rem);
+}
+
+/* ═══════════════════════════════════
+   BASE BODY
+═══════════════════════════════════ */
+body {
+  background-color: var(--kd-bg-base) !important;
+  color: var(--kd-text-primary) !important;
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  font-size: var(--kd-fs-body-medium) !important;
+  line-height: 1.5 !important;
+  letter-spacing: -0.011em !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ═══════════════════════════════════
+   SPACING SYSTEM — consistent vertical rhythm
+   Use .page-section to separate major blocks with 28px gap.
+   Use .page-header for the title + action row at top of every page.
+═══════════════════════════════════ */
+
+/* Main content area padding */
+.kas-main > main {
+  padding: 28px 32px !important;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+/* Page header: title + action button row */
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* no margin needed — gap on parent handles it */
+}
+
+.page-header h2 {
+  margin-bottom: 2px !important;
+}
+
+.page-header p {
+  margin-bottom: 0 !important;
+}
+
+/* Section outer spacing — legacy class kept for compatibility */
+.gap-section-outer {
+  /* gap handled by flex gap on parent; keep empty for backward compat */
+}
+
+/* Ensure all direct children of main are spaced — resets rogue mb-* */
+.kas-main > main > * {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+/* Headings */
+h1, .h1, .font-display {
+  font-size: var(--kd-fs-headline-large) !important;
+  font-weight: 600 !important;
+  color: var(--kd-text-primary) !important;
+  letter-spacing: -0.02em !important;
+  line-height: 1.25 !important;
+}
+
+h2, .h2, .font-heading {
+  font-size: var(--kd-fs-headline-small) !important;
+  font-weight: 600 !important;
+  color: var(--kd-text-primary) !important;
+  letter-spacing: -0.015em !important;
+  line-height: 1.3 !important;
+}
+
+h3, .h3 {
+  font-size: var(--kd-fs-title-large) !important;
+  font-weight: 600 !important;
+  color: var(--kd-text-primary) !important;
+  letter-spacing: -0.01em !important;
+  line-height: 1.35 !important;
+}
+
+p, span, div, td, th {
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+}
+
+/* Captions and Small text */
+.font-caption, .text-muted, .small, small, .kas-sidebar__logo-text span {
+  font-size: var(--kd-fs-body-small) !important;
+  color: var(--kd-text-secondary) !important;
+  line-height: 1.4 !important;
+}
+
+.text-uppercase-caption {
+  font-size: 11px !important;
+  letter-spacing: 0.05em !important;
+  text-transform: uppercase !important;
+}
+
+/* ═══════════════════════════════════
+   SIDEBAR
+═══════════════════════════════════ */
+.kas-sidebar {
+  width: 200px !important;
+  background-color: var(--kd-bg-surface) !important;
+  border-right: 1px solid var(--kd-border) !important;
+  min-height: 100vh;
+  position: fixed;
+  top: 0; left: 0;
+  z-index: 100;
+  padding: 0 !important;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Sidebar brand logo area */
+.sidebar-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 72px;
+  padding: 0 16px;
+  border-bottom: 1px solid var(--kd-border);
+  flex-shrink: 0;
+  box-sizing: border-box;
+}
+
+.sidebar-brand__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  border-radius: 8px;
+  background-color: var(--kd-accent-dim);
+  border: 1px solid var(--kd-accent);
+  color: var(--kd-accent);
+  font-size: 16px;
+  line-height: 1;
+}
+
+.sidebar-brand__text {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.sidebar-brand__name {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 15px !important;
+  font-weight: 700;
+  color: #F0EBE3;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.sidebar-brand__name span {
+  color: var(--kd-accent) !important;
+}
+
+.sidebar-brand__sub {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 10px !important;
+  font-weight: 500;
+  color: var(--kd-text-muted) !important;
+  letter-spacing: 0.03em;
+  line-height: 1.2;
+  margin-top: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Override: old generic selector no longer needed */
+.kas-sidebar > .d-flex.align-items-center {
+  display: none !important; /* fallback — sidebar-brand replaces this */
+}
+
+/* Sidebar nav wrapper */
+.kas-sidebar > nav {
+  flex: 1;
+  padding-top: 12px;
+}
+
+/* Sidebar footer */
+.kas-sidebar > .pt-3 {
+  padding: 12px 20px !important;
+}
+
+.kas-main {
+  margin-left: 200px !important;
+  background-color: var(--kd-bg-base) !important;
+  min-height: 100vh;
+}
+
+@media (max-width: 991.98px) {
+  .kas-sidebar {
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+  }
+  .kas-sidebar.show {
+    transform: translateX(0);
+  }
+  .kas-main {
+    margin-left: 0 !important;
+  }
+  .kas-topbar {
+    height: 72px !important;
+    padding: 12px 16px !important;
+  }
+  .sidebar-brand {
+    height: 72px !important;
+  }
+  .kas-main > main {
+    padding: 20px 16px !important;
+    gap: 20px;
+  }
+  .card, .kas-card {
+    padding: 16px !important;
+  }
+  .kd-filter-toolbar {
+    padding: 12px !important;
+    gap: 8px !important;
+  }
+  .kd-filter-toolbar form {
+    gap: 8px !important;
+  }
+  .kd-filter-toolbar select {
+    width: 100% !important;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .page-header {
+    flex-direction: column;
+    align-items: flex-start !important;
+    gap: 12px !important;
+  }
+  .page-header > a, .page-header > button {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+  .table th, .table td {
+    padding: 10px 12px !important;
+  }
+  .btn {
+    padding: 8px 14px !important;
+  }
+}
+
+/* Active and inactive sidebar items */
+.kas-sidebar .nav-link {
+  color: var(--kd-text-secondary) !important;
+  font-size: var(--kd-fs-body-medium) !important;
+  font-weight: 500 !important;
+  padding: 10px 20px !important;
+  margin-bottom: 2px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  border-radius: 0 !important;
+  background-color: transparent !important;
+  border-left: 3px solid transparent !important;
+  transition: background-color 150ms ease, color 150ms ease !important;
+}
+
+.kas-sidebar .nav-link:hover {
+  background-color: var(--kd-bg-elevated) !important;
+  color: var(--kd-text-primary) !important;
+}
+
+.kas-sidebar .nav-link.active {
+  background-color: var(--kd-bg-elevated) !important;
+  color: var(--kd-text-primary) !important;
+  font-weight: 500 !important;
+  border-left: 3px solid var(--kd-accent) !important;
+}
+
+/* Section labels */
+.kas-sidebar .text-muted.small {
+  font-size: var(--kd-fs-label-small) !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.08em !important;
+  color: var(--kd-text-muted) !important;
+  padding: 10px 20px 5px !important;
+  margin: 0 !important;
+  display: block !important;
+}
+
+/* Sidebar footer */
+.kas-sidebar .border-top {
+  border-top: 1px solid var(--kd-border) !important;
+  padding: 15px 20px !important;
+}
+
+/* ═══════════════════════════════════
+   TOPBAR
+═══════════════════════════════════ */
+.kas-topbar {
+  background-color: var(--kd-bg-surface) !important;
+  border-bottom: 1px solid var(--kd-border) !important;
+  height: 72px;
+  padding: 12px 32px !important;
+  box-sizing: border-box;
+}
+
+/* ═══════════════════════════════════
+   CARDS
+═══════════════════════════════════ */
+.card, .kas-card {
+  background-color: var(--kd-bg-surface) !important;
+  border: none !important;
+  border-radius: 10px !important;
+  padding: 24px !important;
+  box-shadow: none !important;
+}
+
+/* Card body resets — prevent Bootstrap .card-body adding extra padding */
+.card .card-body {
+  padding: 0 !important;
+}
+
+/* card header: title + link row */
+.card-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.card-section-header h5,
+.card-section-header .font-heading {
+  margin-bottom: 0 !important;
+}
+
+/* Badges */
+.badge, .kas-badge {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 6px !important;
+  padding: 4px 10px !important;
+  font-size: var(--kd-fs-label-small) !important;
+  font-weight: 600 !important;
+  border-radius: 4px !important;
+  border: none !important;
+  text-transform: none !important;
+}
+
+.kas-badge-success, .bg-success-subtle, .badge.bg-success {
+  background-color: var(--kd-accent-dim) !important;
+  color: var(--kd-accent) !important;
+}
+
+.kas-badge-warning, .bg-warning-subtle, .badge.bg-warning {
+  background-color: var(--kd-warning-dim) !important;
+  color: var(--kd-warning) !important;
+}
+
+.kas-badge-danger, .bg-danger-subtle, .badge.bg-danger {
+  background-color: var(--kd-danger-dim) !important;
+  color: var(--kd-danger) !important;
+}
+
+.kas-badge-secondary, .badge.bg-secondary {
+  background-color: var(--kd-bg-elevated) !important;
+  color: var(--kd-text-secondary) !important;
+}
+
+.kas-badge-primary, .badge.bg-primary {
+  background-color: var(--kd-accent-dim) !important;
+  color: var(--kd-accent) !important;
+}
+
+/* Buttons */
+.btn {
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  font-size: var(--kd-fs-body-medium) !important;
+  font-weight: 600 !important;
+  padding: 9px 18px !important;
+  border-radius: 6px !important;
+  transition: background-color 150ms ease, border-color 150ms ease, color 150ms ease !important;
+  box-shadow: none !important;
+}
+
+/* Primary buttons */
+.btn-primary, .kas-btn-primary {
+  background-color: var(--kd-accent) !important;
+  border: 1px solid var(--kd-accent) !important;
+  color: #0D1F0D !important;
+}
+
+.btn-primary:hover, .kas-btn-primary:hover {
+  background-color: #6c996a !important;
+  border-color: #6c996a !important;
+}
+
+/* Destructive buttons (Hapus/delete) */
+.btn-danger, .btn-outline-danger {
+  background-color: var(--kd-danger) !important;
+  border: 1px solid var(--kd-danger) !important;
+  color: #ffffff !important;
+}
+
+.btn-danger:hover, .btn-outline-danger:hover {
+  background-color: #ae523e !important;
+  border-color: #ae523e !important;
+}
+
+/* Ghost / Detail buttons */
+.btn-outline-secondary, .btn-outline-primary, .btn-secondary {
+  background-color: transparent !important;
+  border: 1px solid var(--kd-border-strong) !important;
+  color: var(--kd-text-secondary) !important;
+}
+
+.btn-outline-secondary:hover, .btn-outline-primary:hover, .btn-secondary:hover {
+  background-color: var(--kd-bg-elevated) !important;
+  color: var(--kd-text-primary) !important;
+}
+
+/* Avatar Initials Circle */
+.kd-avatar, .rounded-circle {
+  border-radius: 50% !important;
+  width: 38px;
+  height: 38px;
+  background-color: var(--kd-accent-dim) !important;
+  color: var(--kd-accent) !important;
+  border: 1px solid var(--kd-accent) !important;
+  font-weight: 600 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+/* Tables */
+.table {
+  background-color: transparent !important;
+  --bs-table-bg: transparent !important;
+  --bs-table-hover-bg: transparent !important;
+  border-collapse: collapse !important;
+}
+
+.table th {
+  background-color: var(--kd-bg-elevated) !important;
+  font-size: var(--kd-fs-label-medium) !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  color: var(--kd-text-secondary) !important;
+  font-weight: 600 !important;
+  padding: 14px 16px !important;
+  border-bottom: 1px solid var(--kd-border) !important;
+}
+
+.table td {
+  font-size: var(--kd-fs-body-medium) !important;
+  padding: 14px 16px !important;
+  border-bottom: 0.5px solid var(--kd-border) !important;
+  color: var(--kd-text-primary) !important;
+  vertical-align: middle !important;
+  background-color: transparent !important;
+}
+
+.table tbody tr {
+  height: 52px !important;
+  background-color: transparent !important;
+  transition: background-color 150ms ease !important;
+}
+
+.table tbody tr:hover td, .table tbody tr:hover {
+  background-color: var(--kd-bg-elevated) !important;
+}
+
+/* Zebra stripes - none */
+.table-striped>tbody>tr:nth-of-type(odd)>* {
+  --bs-table-bg-type: transparent !important;
+}
+
+/* Progress Bars */
+.progress {
+  height: 6px !important;
+  border-radius: 3px !important;
+  background-color: var(--kd-border) !important;
+  overflow: hidden !important;
+}
+
+.progress-bar {
+  border-radius: 3px !important;
+}
+
+/* Dynamic percentage progress styling */
+.progress-bar-danger, .progress-bar.bg-danger {
+  background-color: var(--kd-danger) !important;
+}
+.progress-bar-warning, .progress-bar.bg-warning {
+  background-color: var(--kd-warning) !important;
+}
+.progress-bar-success, .progress-bar.bg-success {
+  background-color: var(--kd-accent) !important;
+}
+
+/* Form inputs & select */
+.form-control, .form-select {
+  background-color: var(--kd-bg-elevated) !important;
+  border: 1px solid var(--kd-border) !important;
+  color: var(--kd-text-primary) !important;
+  border-radius: 6px !important;
+}
+
+.form-control:focus, .form-select:focus {
+  background-color: var(--kd-bg-elevated) !important;
+  border-color: var(--kd-border-strong) !important;
+  color: var(--kd-text-primary) !important;
+  box-shadow: none !important;
+}
+
+/* Filter Toolbar */
+.kd-filter-toolbar {
+  background-color: var(--kd-bg-elevated) !important;
+  padding: 10px 16px !important;
+  border-radius: 8px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  margin-bottom: 20px !important;
+}
+
+.kd-filter-label {
+  font-size: var(--kd-fs-label-medium) !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  color: var(--kd-text-muted) !important;
+  font-weight: 600 !important;
+}
+
+/* Empty State styling */
+.kd-empty-state {
+  text-align: center;
+  padding: 24px !important;
+}
+.kd-empty-microcopy {
+  font-size: var(--kd-fs-body-small) !important;
+  color: var(--kd-text-secondary) !important;
+  margin-top: 4px !important;
+}
+.kd-empty-link {
+  color: var(--kd-accent) !important;
+  text-decoration: none !important;
+  font-weight: 500 !important;
+}
+.kd-empty-link:hover {
+  text-decoration: underline !important;
+}
+
+/* Inner card overrides */
+.kas-card-inner {
+  background-color: var(--kd-bg-elevated) !important;
+  border: 1px solid var(--kd-border) !important;
+  border-radius: 10px !important;
+  padding: 16px !important;
+}
+
+/* Guest Login Card Override */
+.login-card {
+  background-color: var(--kd-bg-surface) !important;
+  border: 1px solid var(--kd-border) !important;
+  border-radius: 10px !important;
+  box-shadow: none !important;
+}
+
+/* ═══════════════════════════════════
+   FORMS
+═══════════════════════════════════ */
+.form-label {
+  font-size: var(--kd-fs-label-medium) !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  color: var(--kd-text-secondary) !important;
+  margin-bottom: 6px !important;
+}
+
+.form-control, .form-select {
+  font-size: var(--kd-fs-body-medium) !important;
+  height: 40px !important;
+  line-height: 1.4 !important;
+}
+
+textarea.form-control {
+  height: auto !important;
+}
+
+/* Validation states */
+.is-invalid {
+  border-color: var(--kd-danger) !important;
+}
+.invalid-feedback {
+  color: var(--kd-danger) !important;
+  font-size: var(--kd-fs-body-small) !important;
+}
+
+/* ═══════════════════════════════════
+   MISC POLISH
+═══════════════════════════════════ */
+
+/* Sidebar logo area bottom border */
+.kas-sidebar > .d-flex.align-items-center {
+  border-bottom: 1px solid var(--kd-border) !important;
+}
+
+/* List-group items inside cards — no double borders */
+.card .list-group-item {
+  background-color: transparent !important;
+  border-left: none !important;
+  border-right: none !important;
+  border-color: var(--kd-border) !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+/* Dropdown menus */
+.dropdown-menu {
+  background-color: var(--kd-bg-surface) !important;
+  border: 1px solid var(--kd-border) !important;
+  border-radius: 8px !important;
+}
+
+.dropdown-item {
+  color: var(--kd-text-secondary) !important;
+  font-size: 13px !important;
+  padding: 8px 16px !important;
+  transition: background-color 150ms ease !important;
+}
+
+.dropdown-item:hover {
+  background-color: var(--kd-bg-elevated) !important;
+  color: var(--kd-text-primary) !important;
+}
+
+.dropdown-item.text-danger {
+  color: var(--kd-danger) !important;
+}
+
+.dropdown-divider {
+  border-color: var(--kd-border) !important;
+}
+
+.dropdown-header {
+  padding: 10px 16px 6px !important;
+}
+
+/* code tag overrides */
+code {
+  background-color: var(--kd-bg-elevated) !important;
+  color: var(--kd-text-secondary) !important;
+  border: 1px solid var(--kd-border) !important;
+  border-radius: 4px !important;
+  font-size: 12px !important;
+  padding: 2px 6px !important;
+}
+
+/* Center student layouts */
+.student-layout-body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--kd-bg-base) !important;
+  padding: 40px 16px !important;
+  box-sizing: border-box;
+}
+
+@media (max-width: 575.98px) {
+  .student-layout-body {
+    align-items: flex-start !important;
+    padding: 24px 16px !important;
+  }
+}
