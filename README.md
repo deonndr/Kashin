@@ -1,7 +1,7 @@
 # 💳 Kashin — Kelola Kas Kelas dengan Transparansi Penuh
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Laravel-11.x-red?style=for-the-badge&logo=laravel" alt="Laravel 13">
+  <img src="https://img.shields.io/badge/Laravel-13.x-red?style=for-the-badge&logo=laravel" alt="Laravel 13">
   <img src="https://img.shields.io/badge/Bootstrap-5.3-blueviolet?style=for-the-badge&logo=bootstrap" alt="Bootstrap 5.3">
   <img src="https://img.shields.io/badge/Database-MySQL-blue?style=for-the-badge&logo=mysql" alt="MySQL">
   <img src="https://img.shields.io/badge/UKK-Kelas_XI_RPL-brightgreen?style=for-the-badge" alt="UKK XI RPL">
