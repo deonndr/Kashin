@@ -1,6 +1,13 @@
 <x-app-layout>
     <x-slot name="title">Kegiatan & Pengeluaran</x-slot>
 
+    @if(session('success'))
+        <div class="alert alert-success alert-dismissible fade show py-2 px-3 small" role="alert">
+            <i class="bi bi-check-circle-fill me-1"></i> {{ session('success') }}
+            <button type="button" class="btn-close btn-close-white py-2" data-bs-dismiss="alert"></button>
+        </div>
+    @endif
+
     <div class="page-header">
         <div>
             <h2 class="fw-bold text-white mb-0">Kegiatan & Pengeluaran</h2>
@@ -31,39 +38,33 @@
                             $pct = $k->estimasi_biaya > 0
                                 ? min(100, round($realisasi / $k->estimasi_biaya * 100))
                                 : 0;
-                            if ($pct <= 33) {
-                                $c = 'danger';
-                            } elseif ($pct <= 66) {
-                                $c = 'warning';
-                            } else {
-                                $c = 'success';
-                            }
+                            $barColor = $pct <= 33 ? '#ff2f55' : ($pct <= 66 ? '#C49A3C' : '#22c55e');
                         @endphp
                         <tr>
                             <td class="text-muted small border-secondary-subtle">{{ $i + 1 }}</td>
                             <td class="text-light fw-semibold border-secondary-subtle">{{ $k->nama_kegiatan }}</td>
-                            <td class="border-secondary-subtle">Rp {{ number_format($k->estimasi_biaya, 0, ',', '.') }}</td>
-                            <td class="text-danger fw-bold border-secondary-subtle">
-                                -Rp {{ number_format($realisasi, 0, ',', '.') }}
+                            <td class="text-muted border-secondary-subtle">Rp {{ number_format($k->estimasi_biaya, 0, ',', '.') }}</td>
+                            <td class="border-secondary-subtle fw-semibold" style="color:var(--kd-text-secondary);">
+                                −Rp {{ number_format($realisasi, 0, ',', '.') }}
                             </td>
-                            <td class="border-secondary-subtle" style="min-width: 140px;">
+                            <td class="border-secondary-subtle" style="min-width: 160px;">
                                 <div class="d-flex align-items-center gap-2">
-                                    <div class="progress flex-grow-1" style="height: 6px;">
-                                        <div class="progress-bar bg-{{ $c }}" role="progressbar" style="width: {{ $pct }}%"></div>
+                                    <div style="flex:1; height:5px; background:var(--kd-bg-elevated); border-radius:99px; overflow:hidden;">
+                                        <div style="width:{{ $pct }}%; height:100%; background:{{ $barColor }}; border-radius:99px;"></div>
                                     </div>
-                                    <span class="text-muted small" style="min-width: 30px;">{{ $pct }}%</span>
+                                    <span class="text-muted small" style="min-width:30px; font-size:11px; font-weight:600;">{{ $pct }}%</span>
                                 </div>
                             </td>
                             <td class="border-secondary-subtle">
                                 <div class="d-flex gap-2">
-                                    <a href="{{ route('kegiatan.show', $k) }}" class="btn btn-outline-secondary btn-sm d-inline-flex align-items-center gap-1">
-                                        <i class="bi bi-info-circle"></i> Detail
+                                    <a href="{{ route('kegiatan.show', $k) }}" class="ks-btn-icon" title="Detail">
+                                        <i class="bi bi-info-circle"></i>
                                     </a>
                                     <form method="POST" action="{{ route('kegiatan.destroy', $k) }}"
                                           class="delete-form" data-message="Hapus kegiatan {{ $k->nama_kegiatan }}?">
                                         @csrf @method('DELETE')
-                                        <button type="submit" class="btn btn-danger btn-sm d-inline-flex align-items-center gap-1">
-                                            <i class="bi bi-trash"></i> Hapus
+                                        <button type="submit" class="ks-btn-icon ks-btn-danger" title="Hapus">
+                                            <i class="bi bi-trash"></i>
                                         </button>
                                     </form>
                                 </div>
@@ -82,4 +83,21 @@
             </table>
         </div>
     </div>
+
+<style>
+.ks-btn-icon {
+    width: 32px; height: 32px;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--kd-bg-elevated);
+    border: 1.5px solid var(--kd-border);
+    border-radius: 8px;
+    color: var(--kd-text-muted);
+    font-size: 13px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all .15s;
+}
+.ks-btn-icon:hover { border-color: var(--kd-border-strong); color: var(--kd-text-primary); }
+.ks-btn-danger:hover { border-color: var(--kd-danger) !important; color: var(--kd-danger) !important; background: var(--kd-danger-dim) !important; }
+</style>
 </x-app-layout>

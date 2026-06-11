@@ -91,8 +91,8 @@
                                 <form method="POST" action="{{ route('pengeluaran.destroy', $p) }}"
                                       class="delete-form" data-message="Hapus item pengeluaran ini?">
                                     @csrf @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm d-inline-flex align-items-center gap-1">
-                                        <i class="bi bi-trash"></i> Hapus
+                                    <button type="submit" class="ks-btn-icon ks-btn-danger" title="Hapus">
+                                        <i class="bi bi-trash"></i>
                                     </button>
                                 </form>
                             </td>
@@ -110,4 +110,21 @@
             </table>
         </div>
     </div>
+
+<style>
+.ks-btn-icon {
+    width: 32px; height: 32px;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--kd-bg-elevated);
+    border: 1.5px solid var(--kd-border);
+    border-radius: 8px;
+    color: var(--kd-text-muted);
+    font-size: 13px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all .15s;
+}
+.ks-btn-icon:hover { border-color: var(--kd-border-strong); color: var(--kd-text-primary); }
+.ks-btn-danger:hover { border-color: var(--kd-danger) !important; color: var(--kd-danger) !important; background: var(--kd-danger-dim) !important; }
+</style>
 </x-app-layout>

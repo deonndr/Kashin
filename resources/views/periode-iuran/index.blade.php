@@ -35,13 +35,34 @@
                                 </span>
                             </td>
                             <td class="border-secondary-subtle">
-                                <form method="POST" action="{{ route('periode-iuran.destroy', $p) }}"
-                                      class="delete-form" data-message="Hapus periode {{ $p->nama_periode }}?">
-                                    @csrf @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm d-inline-flex align-items-center gap-1">
-                                        <i class="bi bi-trash"></i> Hapus
-                                    </button>
-                                </form>
+                                <div class="d-flex gap-2 align-items-center">
+                                    {{-- Tombol Edit: selalu bisa --}}
+                                    <a href="{{ route('periode-iuran.edit', $p) }}"
+                                       class="ks-btn-icon" title="Edit" data-bs-toggle="tooltip">
+                                        <i class="bi bi-pencil-square"></i>
+                                    </a>
+
+                                    @if($p->pembayaran_iurans_count > 0)
+                                        {{-- Tidak bisa dihapus: masih ada transaksi --}}
+                                        <button type="button"
+                                                class="ks-btn-icon"
+                                                disabled
+                                                title="Tidak bisa dihapus: masih ada {{ $p->pembayaran_iurans_count }} transaksi di periode ini"
+                                                data-bs-toggle="tooltip">
+                                            <i class="bi bi-trash"></i>
+                                        </button>
+                                    @else
+                                        {{-- Aman dihapus: tidak ada transaksi --}}
+                                        <form method="POST" action="{{ route('periode-iuran.destroy', $p) }}"
+                                              class="delete-form"
+                                              data-message="Hapus periode {{ $p->nama_periode }}? Periode ini tidak memiliki transaksi sehingga aman dihapus.">
+                                            @csrf @method('DELETE')
+                                            <button type="submit" class="ks-btn-icon ks-btn-danger" title="Hapus" data-bs-toggle="tooltip">
+                                                <i class="bi bi-trash"></i>
+                                            </button>
+                                        </form>
+                                    @endif
+                                </div>
                             </td>
                         </tr>
                     @empty
@@ -57,4 +78,22 @@
             </table>
         </div>
     </div>
+
+<style>
+.ks-btn-icon {
+    width: 32px; height: 32px;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--kd-bg-elevated);
+    border: 1.5px solid var(--kd-border);
+    border-radius: 8px;
+    color: var(--kd-text-muted);
+    font-size: 13px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all .15s;
+}
+.ks-btn-icon:hover { border-color: var(--kd-border-strong); color: var(--kd-text-primary); }
+.ks-btn-icon:disabled { opacity: 0.4; cursor: not-allowed; }
+.ks-btn-danger:hover { border-color: var(--kd-danger) !important; color: var(--kd-danger) !important; background: var(--kd-danger-dim) !important; }
+</style>
 </x-app-layout>

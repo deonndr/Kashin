@@ -63,10 +63,40 @@ class PeriodeIuranController extends Controller
             ->with('success', 'Periode iuran berhasil ditambahkan.');
     }
 
+    public function edit(PeriodeIuran $periodeIuran)
+    {
+        return view('periode-iuran.edit', compact('periodeIuran'));
+    }
+
+    public function update(Request $request, PeriodeIuran $periodeIuran)
+    {
+        $request->validate([
+            'nominal_tagihan' => 'required|integer|min:1000',
+        ], [
+            'nominal_tagihan.required' => 'Nominal tagihan wajib diisi.',
+            'nominal_tagihan.min'      => 'Nominal minimal Rp 1.000.',
+        ]);
+
+        $periodeIuran->update([
+            'nominal_tagihan' => $request->nominal_tagihan,
+        ]);
+
+        return redirect()->route('periode-iuran.index')
+            ->with('success', "Nominal periode \"{$periodeIuran->nama_periode}\" berhasil diperbarui.");
+    }
+
     public function destroy(PeriodeIuran $periodeIuran)
     {
+        // Cegah hapus jika masih ada transaksi pembayaran di periode ini
+        if ($periodeIuran->pembayaranIurans()->exists()) {
+            return redirect()->route('periode-iuran.index')
+                ->with('error', "Periode \"{$periodeIuran->nama_periode}\" tidak bisa dihapus karena masih ada {$periodeIuran->pembayaranIurans()->count()} data pembayaran yang terhubung. Hapus semua pembayaran periode ini terlebih dahulu.");
+        }
+
+        $nama = $periodeIuran->nama_periode;
         $periodeIuran->delete();
+
         return redirect()->route('periode-iuran.index')
-            ->with('success', 'Periode iuran berhasil dihapus.');
+            ->with('success', "Periode \"{$nama}\" berhasil dihapus.");
     }
 }

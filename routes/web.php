@@ -25,7 +25,7 @@ Route::middleware(['auth', 'role:bendahara'])->group(function () {
     Route::resource('siswa', SiswaController::class)->except(['show']);
 
     // Periode Iuran
-    Route::resource('periode-iuran', PeriodeIuranController::class)->except(['show', 'edit', 'update']);
+    Route::resource('periode-iuran', PeriodeIuranController::class)->except(['show']);
 
     // Pembayaran Iuran
     Route::resource('pembayaran-iuran', PembayaranIuranController::class)->except(['show', 'edit', 'update']);

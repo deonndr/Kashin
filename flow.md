@@ -8,7 +8,7 @@ Dokumen ini berisi rangkuman alur kerja (flow) aplikasi, kesesuaian kisi-kisi, d
 
 Aplikasi **Kashin** membagi hak akses ke dalam **2 Role** menggunakan Middleware otorisasi yang ketat:
 
-### 1. Role: Bendahara (Hak Akses Penuh / Write-Access)
+### 1. Role: Bendahara (Write-Access)
 *   **Login & Dashboard:** Setelah berhasil login, Bendahara diarahkan ke `/dashboard`. Halaman ini berisi rangkuman statistik keuangan: total kas masuk, kas keluar, sisa saldo kas saat ini, daftar **seluruh** siswa yang belum lunas bulan ini (tanpa limit), serta 5 transaksi terbaru (gabungan kas masuk & keluar).
 *   **Manajemen Siswa (CRUD):** 
     *   **Create (Tambah):** Bendahara menginput NISN, Nama, Kelas, dan Email. Sistem secara otomatis membuat data di tabel `siswa` sekaligus akun login di tabel `users` dengan password default `siswa123`.

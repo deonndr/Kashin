@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\PembayaranIuran;
 use App\Models\PeriodeIuran;
 use App\Models\Siswa;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
@@ -29,9 +30,27 @@ class PembayaranIuranController extends Controller
 
     public function create()
     {
-        $siswas  = Siswa::orderBy('nama_siswa')->get();
+        $now = Carbon::now();
+
+        // ID siswa yang sudah ada record pembayaran bulan ini
+        $sudahBayarIds = PembayaranIuran::whereMonth('tanggal_bayar', $now->month)
+            ->whereYear('tanggal_bayar', $now->year)
+            ->pluck('siswa_id')
+            ->unique();
+
+        // Grup 1: belum bayar bulan ini → tampil paling atas, A-Z
+        $belumBayar = Siswa::whereNotIn('id', $sudahBayarIds)
+            ->orderBy('nama_siswa')
+            ->get();
+
+        // Grup 2: sudah bayar bulan ini → tampil di bawah, A-Z
+        $sudahBayar = Siswa::whereIn('id', $sudahBayarIds)
+            ->orderBy('nama_siswa')
+            ->get();
+
         $periodes = PeriodeIuran::orderBy('nama_periode')->get();
-        return view('pembayaran-iuran.create', compact('siswas', 'periodes'));
+
+        return view('pembayaran-iuran.create', compact('belumBayar', 'sudahBayar', 'periodes'));
     }
 
     public function store(Request $request)

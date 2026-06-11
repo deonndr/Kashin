@@ -47,27 +47,27 @@ class DashboardController extends Controller
 
         // ─── Transaksi Terakhir (UNION masuk + keluar) ───
         $transaksiMasuk = PembayaranIuran::with('siswa')
-            ->latest('tanggal_bayar')
+            ->latest()          // sort by created_at DESC (jam realtime dicatat)
             ->take(8)
             ->get()
             ->map(fn($p) => [
                 'type'    => 'in',
                 'label'   => $p->siswa->nama_siswa ?? 'Siswa',
-                'sub'     => 'Iuran ' . Carbon::parse($p->tanggal_bayar)->translatedFormat('d M, H.i'),
+                'sub'     => 'Iuran ' . Carbon::parse($p->created_at)->translatedFormat('d M, H.i'),
                 'amount'  => $p->jumlah_bayar,
-                'date'    => $p->tanggal_bayar,
+                'date'    => $p->created_at,
             ]);
 
         $transaksiKeluar = Pengeluaran::with('kegiatan')
-            ->latest('tanggal_keluar')
+            ->latest()          // sort by created_at DESC (jam realtime dicatat)
             ->take(8)
             ->get()
             ->map(fn($p) => [
                 'type'    => 'out',
                 'label'   => $p->nama_pengeluaran,
-                'sub'     => ($p->kegiatan->nama_kegiatan ?? 'Kegiatan') . ' · ' . Carbon::parse($p->tanggal_keluar)->translatedFormat('d M, H.i'),
+                'sub'     => ($p->kegiatan->nama_kegiatan ?? 'Kegiatan') . ' · ' . Carbon::parse($p->created_at)->translatedFormat('d M, H.i'),
                 'amount'  => $p->nominal_keluar,
-                'date'    => $p->tanggal_keluar,
+                'date'    => $p->created_at,
             ]);
 
         $transaksiTerakhir = $transaksiMasuk->concat($transaksiKeluar)

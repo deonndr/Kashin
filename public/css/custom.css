@@ -11,11 +11,11 @@
   --kd-text-secondary: #9E9488; /* labels, subtitles */
   --kd-text-muted: #5C564E;     /* placeholders, disabled */
 
-  --kd-accent: #7DA87B;         /* brand green — income, lunas, progress */
-  --kd-accent-dim: #3D5C3C;     /* accent backgrounds */
-  --kd-danger: #C0604A;         /* expenses, hapus, keluar */
-  --kd-danger-dim: #4A2018;     /* danger backgrounds */
-  --kd-warning: #C49A3C;        /* menunggak */
+  --kd-accent: #6282ED;         /* brand blue — income, lunas, progress */
+  --kd-accent-dim: #1E2B52;     /* accent backgrounds */
+  --kd-danger: #ff2f55;         /* expenses, hapus, keluar */
+  --kd-danger-dim: #3D101A;     /* danger backgrounds */
+  --kd-warning: #C49A3C;        /* belum bayar */
   --kd-warning-dim: #4A3A10;    /* warning backgrounds */
 
   /* ═══════════════════════════════════
@@ -432,12 +432,13 @@ p, span, div, td, th {
 .btn-primary, .kas-btn-primary {
   background-color: var(--kd-accent) !important;
   border: 1px solid var(--kd-accent) !important;
-  color: #0D1F0D !important;
+  color: #ffffff !important;
 }
 
 .btn-primary:hover, .kas-btn-primary:hover {
-  background-color: #6c996a !important;
-  border-color: #6c996a !important;
+  background-color: #4E70EC !important;
+  border-color: #4E70EC !important;
+  color: #ffffff !important;
 }
 
 /* Destructive buttons (Hapus/delete) */
@@ -448,8 +449,8 @@ p, span, div, td, th {
 }
 
 .btn-danger:hover, .btn-outline-danger:hover {
-  background-color: #ae523e !important;
-  border-color: #ae523e !important;
+  background-color: #D62043 !important;
+  border-color: #D62043 !important;
 }
 
 /* Ghost / Detail buttons */
@@ -465,7 +466,7 @@ p, span, div, td, th {
 }
 
 /* Avatar Initials Circle */
-.kd-avatar, .rounded-circle {
+.kd-avatar {
   border-radius: 50% !important;
   width: 38px;
   height: 38px;

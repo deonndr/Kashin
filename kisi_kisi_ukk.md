@@ -1,7 +1,12 @@
 # Kisi-Kisi UJIKOM Kelas Industri — Kelas XI
 
----
-
+- **Tabel Migration(5)**
+  1. siswa
+  2. periode_iuran
+  3. pembayaran_iuran
+  4. kegiatan
+  5. pengeluaran
+  
 ## A. Ujian Praktek (Take-Home Project Backend & Database)
 
 Siswa diwajibkan menyelesaikan project akhir berupa aplikasi berbasis Web murni (Real-Case) dengan ketentuan standar industri.
@@ -12,7 +17,7 @@ Siswa diwajibkan menyelesaikan project akhir berupa aplikasi berbasis Web murni 
   Setiap siswa bebas merancang aplikasi dengan tema apapun (contoh: Sistem Kasir, Manajemen Stok, Aplikasi Presensi, Sistem Perpustakaan, Rental Kendaraan, Manajemen Tugas, dll.) asalkan memiliki fungsi yang jelas dan logis.
 
 - **Pra-Ujikom & Setor Detail (H-7)**
-  Satu minggu sebelum ujian, mentor akan memberikan arahan project. Siswa wajib menyetorkan judul aplikasi beserta daftar tabel database maksimal 1 hari sejak diumumkan.
+  Satu minggu sebelum ujian, mentor akan memberikan arahan project. Siswa wajib menyetorkan judul aplikasi beserta daftar tabel database maksimal 1 hari   sejak diumumkan.
   - Tema/judul tidak boleh sama dalam satu kelas (siapa cepat dia dapat)
   - Dikunci di grup koordinasi dan tidak boleh berubah hingga hari-H
   - **Format Penyetoran:** Nama Siswa – Judul Aplikasi UMKM – List 5 Tabel Database

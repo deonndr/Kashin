@@ -22,7 +22,7 @@
                     <div class="d-inline-flex align-items-center justify-content-center bg-primary bg-gradient rounded-3 text-white p-3 mb-3" style="width: 54px; height: 54px; font-size: 24px;">
                         <i class="bi bi-wallet2 fs-3"></i>
                     </div>
-                    <h3 class="fw-bold mb-1">Kas<span class="text-primary">Digital</span></h3>
+                    <h3 class="fw-bold mb-1">Kash<span class="text-primary">in</span></h3>
                     <p class="text-muted small">Kelola kas kelas dengan transparansi penuh</p>
                 </div>
                 
