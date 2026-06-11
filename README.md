@@ -1,10 +1,9 @@
 # 💳 Kashin — Kelola Kas Kelas dengan Transparansi Penuh
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Laravel-11.x-red?style=for-the-badge&logo=laravel" alt="Laravel 11">
+  <img src="https://img.shields.io/badge/Laravel-11.x-red?style=for-the-badge&logo=laravel" alt="Laravel 13">
   <img src="https://img.shields.io/badge/Bootstrap-5.3-blueviolet?style=for-the-badge&logo=bootstrap" alt="Bootstrap 5.3">
   <img src="https://img.shields.io/badge/Database-MySQL-blue?style=for-the-badge&logo=mysql" alt="MySQL">
-  <img src="https://img.shields.io/badge/Design-Warm_Dark-orange?style=for-the-badge" alt="Warm Dark Theme">
   <img src="https://img.shields.io/badge/Otorisasi-Multi--Role-green?style=for-the-badge" alt="Multi Role">
   <img src="https://img.shields.io/badge/UKK-Kelas_XI_RPL-brightgreen?style=for-the-badge" alt="UKK XI RPL">
 </p>
@@ -14,9 +13,6 @@
 ## 📖 Ringkasan Proyek
 
 **Kashin** (singkatan dari *Kas-In*) adalah aplikasi manajemen kas kelas berbasis web yang dirancang khusus untuk memfasilitasi transparansi keuangan kelas secara real-time. Aplikasi ini dikembangkan untuk memenuhi kriteria Uji Kompetensi Keahlian (UKK) Kelas Industri XI RPL dengan standardisasi industri yang mencakup kerapian antarmuka (UI/UX) premium, otorisasi multi-role yang ketat, dan alur pencatatan transaksi yang intuitif.
-
-> [!NOTE]
-> Aplikasi ini menggunakan konsep desain **Warm Dark Mode** dengan palet warna yang harmonis (Glassmorphism ringan, transisi halus, micro-animations, dan tata letak responsif) untuk memberikan pengalaman pengguna yang modern dan premium.
 
 ---
 
@@ -185,9 +181,9 @@ Aplikasi Kashin diimplementasikan dengan standar keamanan web modern:
 Ikuti langkah-langkah berikut untuk menjalankan aplikasi Kashin di server lokal Anda:
 
 ### 📋 Prasyarat:
-- PHP >= 8.2
+- PHP >= 8.3
 - Composer
-- MySQL / MariaDB Server
+- MySQL
 
 ### 🛠️ Langkah Instalasi:
 
